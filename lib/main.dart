@@ -1,5 +1,7 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,7 +13,8 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(title,
-          style: const TextStyle(fontSize: 22.5)),
+          style: const TextStyle(fontSize: 22.5)
+          ),
           backgroundColor: Colors.black,
           toolbarHeight: 70,
         ),
@@ -171,11 +174,17 @@ class DialogExample extends StatelessWidget {
           content: const Text('It will only take a minute'),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.pop(context, 'Not Now'),
+              onPressed: (){
+                Navigator.pop(context, 'Not Now');
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+              },
               child: const Text('Not Now'),
             ),
             TextButton(
-              onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) => const SecondRoute())),
+              onPressed: () {
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
+                Navigator.push(context,MaterialPageRoute(builder: (context) => const QuestionsPage()));
+                },
               child: const Text('Yes!'),
             ),
           ],
@@ -186,23 +195,56 @@ class DialogExample extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
+class QuestionsPage extends StatelessWidget {
+  const QuestionsPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('Question Of The Day',
-            style: TextStyle(fontSize: 22.5)
-        ),
-      ),
       body:
-        ListView(
-          children: const <Widget>[
-          Text('')
-        ]
-      )
+        Container(
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(colors: [Colors.orangeAccent, Colors.deepOrange]),
+          ),
+          child: ListView(
+              children: const <Widget>[
+                Text('\n\n\nHow Many People Did You Meet Today?\n',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 40, color: Colors.black, fontWeight: FontWeight.bold)
+                ),
+                //SliderExample(),
+                SliderExample()
+              ]
+          ),
+      ),
+    );
+  }
+}
+
+class SliderExample extends StatefulWidget {
+  const SliderExample({super.key});
+  @override
+  State<SliderExample> createState() => _SliderExampleState();
+}
+
+class _SliderExampleState extends State<SliderExample> {
+  final double _min = 0;
+  final double _max = 20;
+  double _value = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SfSlider(
+      min: _min,
+      max: _max,
+      value: _value,
+      interval: 2,
+      showTicks: true,
+      showLabels: true,
+      onChanged: (dynamic newValue) {
+        setState(() {
+          _value = newValue;
+        });
+      },
     );
   }
 }
