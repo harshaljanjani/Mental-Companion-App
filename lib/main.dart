@@ -2,6 +2,7 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -204,16 +205,33 @@ class QuestionsPage extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           decoration: const BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.orangeAccent, Colors.deepOrange]),
+              gradient: LinearGradient(colors: [Color(0xFFffdc00), Colors.deepOrange]),
           ),
           child: ListView(
-              children: const <Widget>[
-                Text('\n\n\nHow Many People Did You Meet Today?\n',
-                    textAlign: TextAlign.justify,
+              children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(15,0,15,0),
+                  child: Text('\n\n\nHow Many People Did You Meet Today?\n',
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 40, color: Colors.black, fontWeight: FontWeight.bold)
+                )
                 ),
                 //SliderExample(),
-                SliderExample()
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(4,20,0,0),
+                  child: SliderExample(),
+                ),
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(25,150,25,0),
+                    child: TextButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      ),
+                      onPressed: () { },
+                      child: const Text('NEXT', style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold)),
+                    )
+                )
               ]
           ),
       ),
@@ -233,18 +251,44 @@ class _SliderExampleState extends State<SliderExample> {
   double _value = 0;
   @override
   Widget build(BuildContext context) {
-    return SfSlider(
-      min: _min,
-      max: _max,
-      value: _value,
-      interval: 2,
-      showTicks: true,
-      showLabels: true,
-      onChanged: (dynamic newValue) {
-        setState(() {
-          _value = newValue;
-        });
-      },
+    return Center(
+        child: SfSliderTheme(
+          data: SfSliderThemeData(
+            trackCornerRadius: 10,
+            thumbColor: Colors.white,
+            thumbRadius: 20,
+            activeTrackHeight: 40,
+            inactiveTrackHeight: 40,
+            tooltipTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            tooltipBackgroundColor: Colors.white,
+            inactiveTrackColor: Colors.blue,
+            activeTrackColor: Colors.blue,
+            activeLabelStyle: const TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+            inactiveLabelStyle: const TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold)
+          ),
+        child: SfSlider(
+          thumbIcon: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.blue,
+              size: 28
+          ),
+          min: _min,
+          max: _max,
+          value: _value,
+          interval: 2,
+          showTicks: true,
+          showLabels: true,
+          enableTooltip: true,
+          tooltipShape: const SfPaddleTooltipShape(),
+          minorTicksPerInterval: 1,
+          onChanged: (dynamic newValue) {
+            setState(() {
+              _value = newValue;
+            });
+          },
+        )
+        )
     );
   }
 }
+
