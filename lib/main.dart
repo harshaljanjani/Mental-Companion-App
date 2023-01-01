@@ -105,9 +105,11 @@ class MyHomePage extends StatelessWidget {
                 ListView(
                   children: <Widget>[
                     Image.asset('images/people-1.jpg'),
-                    const Text(
+                    const ListTile(
+                        title: Text(
                         'Go out! Meet a few people today',
                         style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 19.5),
+                    ),
                     ),
                     Image.asset('images/people-2.jpg'),
                     const Text(
@@ -124,7 +126,7 @@ class MyHomePage extends StatelessWidget {
                       'You did good today, look forward to another productive day!',
                       style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 19.5),
                     ),
-                    const DialogExample(),
+                    const QuizDialog(),
                     const DoubleBackToCloseApp(
                     snackBar: SnackBar(
                       content: Text('Tap Back Again To Exit The Application'),
@@ -133,7 +135,7 @@ class MyHomePage extends StatelessWidget {
                           child: null
                       ),
                     )
-                  ]
+                  ],
                 ),
                 const Icon(Icons.shield_moon_rounded,size: 55.0,),
                 const Icon(Icons.people_alt_outlined,size: 55.0,),
@@ -163,8 +165,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class DialogExample extends StatelessWidget {
-  const DialogExample({super.key});
+class QuizDialog extends StatelessWidget {
+  const QuizDialog({super.key});
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -223,12 +225,12 @@ class QuestionsPage extends StatelessWidget {
                 ),
                 Padding(
                     padding: const EdgeInsets.fromLTRB(25,150,25,0),
-                    child: TextButton(
+                    child: OutlinedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                         foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                       ),
-                      onPressed: () { },
+                      onPressed: () {Navigator.pop(context);},
                       child: const Text('NEXT', style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold)),
                     )
                 )
@@ -291,4 +293,3 @@ class _SliderExampleState extends State<SliderExample> {
     );
   }
 }
-
