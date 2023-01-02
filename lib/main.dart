@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
+import 'PhotosList.dart';
 
 void main() => runApp(const MyApp());
 
@@ -103,31 +104,10 @@ class MyHomePage extends StatelessWidget {
               //children: <Widget>[...] for many images
               children: [
                 ListView(
-                  children: <Widget>[
-                    Image.asset('images/people-1.jpg'),
-                    const ListTile(
-                        title: Text(
-                        'Go out! Meet a few people today',
-                        style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 19.5),
-                    ),
-                    ),
-                    Image.asset('images/people-2.jpg'),
-                    const Text(
-                      'Listen to your favorite tracks!',
-                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 19.5),
-                    ),
-                    Image.asset('images/work.jpg'),
-                    const Text(
-                      'Find people with whom you could do something you love to do!',
-                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 19.5),
-                    ),
-                    Image.asset('images/raccoon-branch.jpg'),
-                    const Text(
-                      'You did good today, look forward to another productive day!',
-                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 19.5),
-                    ),
-                    const QuizDialog(),
-                    const DoubleBackToCloseApp(
+                  children: const <Widget>[
+                    PhotosList(),
+                    QuizDialog(),
+                    DoubleBackToCloseApp(
                     snackBar: SnackBar(
                       content: Text('Tap Back Again To Exit The Application'),
                       ),
