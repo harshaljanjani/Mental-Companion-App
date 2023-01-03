@@ -58,8 +58,8 @@ class _PhotosListState extends State<PhotosList> {
             itemBuilder: (context, i) {
               return Dismissible(
                 background: Container(
-                  color: Colors.red,
-                  child: const Icon(Icons.delete, size: 50),
+                  color: Colors.green,
+                  child: const Icon(Icons.check_box_outlined, size: 60, color: Colors.white),
                 ),
                 key: ValueKey<Object>(Photos.items[i]),
                 onDismissed: (DismissDirection direction) {
