@@ -1,15 +1,25 @@
+// @dart=2.9
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'PhotosList.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'welcome_screen.dart';
+import 'signup_screen.dart';
+import 'login_screen.dart';
 
-void main() => runApp(const MyApp());
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+  //runApp(const MyApp());
+}
 
-class MyHomePage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   final title = "Your Mental Health Companion";
-  const MyHomePage({key, title}) : super(key: key);
+  const HomePage({key, title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,24 +139,25 @@ class MyHomePage extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Drawer Layout with Tabs',
-      theme: ThemeData(
-        primaryColor: Colors.green,
-      ),
-      home: const MyHomePage(title: "Drawer Layout with Tabs"),
+      initialRoute: 'welcome_screen',
+      routes: {
+        'welcome_screen': (context) => WelcomeScreen(),
+        'registration_screen': (context) => RegistrationScreen(),
+        'login_screen': (context) => LoginScreen(),
+        'home_screen': (context) => const HomePage()
+      },
     );
   }
 }
 
 class QuizDialog extends StatelessWidget {
-  const QuizDialog({super.key});
+  const QuizDialog({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -179,7 +190,7 @@ class QuizDialog extends StatelessWidget {
 }
 
 class QuestionsPage extends StatelessWidget {
-  const QuestionsPage({super.key});
+  const QuestionsPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -222,7 +233,7 @@ class QuestionsPage extends StatelessWidget {
 }
 
 class SliderExample extends StatefulWidget {
-  const SliderExample({super.key});
+  const SliderExample({Key key}) : super(key: key);
   @override
   State<SliderExample> createState() => _SliderExampleState();
 }

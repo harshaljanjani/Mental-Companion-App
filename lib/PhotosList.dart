@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 class Item{
   final int id;
@@ -5,9 +6,9 @@ class Item{
   final String image;
   Item(
       {
-        required this.id,
-        required this.task,
-        required this.image
+        @required this.id,
+        @required this.task,
+        @required this.image
       }
       );
 }
@@ -38,7 +39,7 @@ class Photos{
 }
 
 class PhotosList extends StatefulWidget {
-  const PhotosList({Key? key}) : super(key: key);
+  const PhotosList({Key key}) : super(key: key);
   @override
   State<PhotosList> createState() => _PhotosListState();
 }
