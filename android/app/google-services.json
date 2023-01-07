@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "193085263661",
+    "project_id": "mental-companion-app-b6938",
+    "storage_bucket": "mental-companion-app-b6938.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193085263661:android:857f6238629fd462fb0da4",
+        "android_client_info": {
+          "package_name": "com.harshaljanjani.mental_companion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193085263661-no7vsq12kkqmno52og0bebbn92fdvflt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYmwMtZoBs4deTzqlsc3fcrRHqxEnOg4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193085263661-no7vsq12kkqmno52og0bebbn92fdvflt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
