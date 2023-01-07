@@ -1,20 +1,13 @@
-// @dart=2.9
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mental_companion/screens/login_page.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'PhotosList.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'welcome_screen.dart';
-import 'signup_screen.dart';
-import 'login_screen.dart';
 
-main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
-  //runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
 class HomePage extends StatelessWidget {
@@ -25,10 +18,26 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(title,
-          style: const TextStyle(fontSize: 22.5)
+          style: const TextStyle(fontSize: 22.5, color: Colors.white),
+            textAlign: TextAlign.center,
           ),
           backgroundColor: Colors.black,
           toolbarHeight: 70,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.whatshot_rounded,
+                  size: 34,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),
         ),
         drawer: Drawer(
           child: ListView(
@@ -37,7 +46,7 @@ class HomePage extends StatelessWidget {
                 height: 75,
                 child: DrawerHeader(
                   decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: Colors.white,
                       gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
@@ -78,7 +87,11 @@ class HomePage extends StatelessWidget {
                     "Log Out",
                     style: TextStyle(fontSize: 18)),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ),
+                  );
                 },
               ),
               ListTile(
@@ -103,9 +116,9 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.greenAccent),
                 tabs: const [
-                  Tab(icon: Icon(Icons.emoji_people_outlined, size: 33)),
-                  Tab(icon: Icon(Icons.people_alt_outlined, size: 33)),
-                  Tab(icon: Icon(Icons.directions_bike, size: 33)),
+                  Tab(icon: Icon(Icons.emoji_people_outlined, size: 33, color: Colors.white)),
+                  Tab(icon: Icon(Icons.people_alt_outlined, size: 33, color: Colors.white)),
+                  Tab(icon: Icon(Icons.directions_bike, size: 33, color: Colors.white)),
                 ],
                 indicatorColor: Colors.white,
               ),
@@ -139,25 +152,23 @@ class HomePage extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
-
+  const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: 'welcome_screen',
-      routes: {
-        'welcome_screen': (context) => WelcomeScreen(),
-        'registration_screen': (context) => RegistrationScreen(),
-        'login_screen': (context) => LoginScreen(),
-        'home_screen': (context) => const HomePage()
-      },
+      title: 'Flutter Authentication',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.cyan,
+      ),
+      home: const LoginPage(),
     );
   }
 }
 
 class QuizDialog extends StatelessWidget {
-  const QuizDialog({Key key}) : super(key: key);
+  const QuizDialog({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -190,7 +201,7 @@ class QuizDialog extends StatelessWidget {
 }
 
 class QuestionsPage extends StatelessWidget {
-  const QuestionsPage({Key key}) : super(key: key);
+  const QuestionsPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -233,7 +244,7 @@ class QuestionsPage extends StatelessWidget {
 }
 
 class SliderExample extends StatefulWidget {
-  const SliderExample({Key key}) : super(key: key);
+  const SliderExample({Key? key}) : super(key: key);
   @override
   State<SliderExample> createState() => _SliderExampleState();
 }
