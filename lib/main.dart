@@ -2,9 +2,9 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mental_companion/screens/login_page.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
 import 'PhotosList.dart';
+import 'app_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +13,14 @@ void main() {
 class HomePage extends StatelessWidget {
   final title = "Your Mental Health Companion";
   const HomePage({key, title}) : super(key: key);
+  //URL LaunchInBrowser Functionality
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication,))
+    {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +87,8 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(fontSize: 18)
                 ),
                 onTap: () {
+                  final Uri toLaunch = Uri(scheme: 'https', host: 'www.vandrevalafoundation.com');
+                  _launchInBrowser(toLaunch);
                   Navigator.pop(context);
                 },
               ),
@@ -175,8 +185,8 @@ class QuizDialog extends StatelessWidget {
       onPressed: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('Ready To Answer A Few Questions?'),
-          content: const Text('It will only take a minute'),
+          title: const Text('Get Ready To Capture Your Emotion!'),
+          content: const Text('It will only take seconds'),
           actions: <Widget>[
             TextButton(
               onPressed: (){
@@ -188,20 +198,20 @@ class QuizDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
-                Navigator.push(context,MaterialPageRoute(builder: (context) => const QuestionsPage()));
+                Navigator.push(context,MaterialPageRoute(builder: (context) => const EmotionWidget()));
                 },
               child: const Text('Yes!'),
             ),
           ],
         ),
       ),
-      child: const Text("Take On Today's Mental Health Quiz!"),
+      child: const Text("MoodCheck ©", style: TextStyle(fontSize: 18)),
     );
   }
 }
 
-class QuestionsPage extends StatelessWidget {
-  const QuestionsPage({Key? key}) : super(key: key);
+class MoodCheck extends StatelessWidget {
+  const MoodCheck({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -215,16 +225,16 @@ class QuestionsPage extends StatelessWidget {
               children: <Widget>[
                 const Padding(
                   padding: EdgeInsets.fromLTRB(15,0,15,0),
-                  child: Text('\n\n\nHow Many People Did You Meet Today?\n',
+                  child: Text('\nEmotionCapture\n',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 40, color: Colors.black, fontWeight: FontWeight.bold)
                 )
                 ),
                 //SliderExample(),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(4,20,0,0),
-                  child: SliderExample(),
-                ),
+                // const Padding(
+                //   padding: EdgeInsets.fromLTRB(4,20,0,0),
+                //   child: SliderExample(),
+                // ),
                 Padding(
                     padding: const EdgeInsets.fromLTRB(25,150,25,0),
                     child: OutlinedButton(
@@ -243,55 +253,22 @@ class QuestionsPage extends StatelessWidget {
   }
 }
 
-class SliderExample extends StatefulWidget {
-  const SliderExample({Key? key}) : super(key: key);
-  @override
-  State<SliderExample> createState() => _SliderExampleState();
-}
 
-class _SliderExampleState extends State<SliderExample> {
-  final double _min = 0;
-  final double _max = 20;
-  double _value = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: SfSliderTheme(
-          data: SfSliderThemeData(
-            trackCornerRadius: 10,
-            thumbColor: Colors.white,
-            thumbRadius: 20,
-            activeTrackHeight: 40,
-            inactiveTrackHeight: 40,
-            tooltipTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            tooltipBackgroundColor: Colors.white,
-            inactiveTrackColor: Colors.blue,
-            activeTrackColor: Colors.blue,
-            activeLabelStyle: const TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-            inactiveLabelStyle: const TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold)
-          ),
-        child: SfSlider(
-          thumbIcon: const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.blue,
-              size: 28
-          ),
-          min: _min,
-          max: _max,
-          value: _value,
-          interval: 2,
-          showTicks: true,
-          showLabels: true,
-          enableTooltip: true,
-          tooltipShape: const SfPaddleTooltipShape(),
-          minorTicksPerInterval: 1,
-          onChanged: (dynamic newValue) {
-            setState(() {
-              _value = newValue;
-            });
-          },
-        )
-        )
-    );
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
