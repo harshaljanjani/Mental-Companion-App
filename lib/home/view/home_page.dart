@@ -1,7 +1,9 @@
 import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mental_companion/home/controller/home_controller.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CapturePage extends StatefulWidget {
   const CapturePage({Key? key}) : super(key: key);
@@ -23,7 +25,22 @@ class _CapturePageState extends State<CapturePage> {
         width: 70,
         height: 70,
         child: FloatingActionButton(
-          onPressed: () => null,
+          onPressed: () async {
+            // _homeController.captureImage();
+            try {
+              // Ensure that the camera is initialized.
+              await _homeController.cameraController?.initialize();
+              XFile? image = await _homeController.cameraController?.takePicture();
+              if (kDebugMode) {
+                print('${image?.path}');
+              }
+              // Attempt to take a picture and then get the location
+              // where the image file is saved.
+            } catch (e) {
+              // If an error occurs, log the error to the console.
+              print(e);
+            }
+          },
           backgroundColor: Colors.black,
           child: const Icon(Icons.camera, size: 50),
         ),

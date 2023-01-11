@@ -128,7 +128,7 @@ class HomePage extends StatelessWidget {
                 tabs: const [
                   Tab(icon: Icon(Icons.emoji_people_outlined, size: 33, color: Colors.white)),
                   Tab(icon: Icon(Icons.people_alt_outlined, size: 33, color: Colors.white)),
-                  Tab(icon: Icon(Icons.directions_bike, size: 33, color: Colors.white)),
+                  Tab(icon: Icon(Icons.auto_graph, size: 33, color: Colors.white)),
                 ],
                 indicatorColor: Colors.white,
               ),
@@ -150,8 +150,8 @@ class HomePage extends StatelessWidget {
                     )
                   ],
                 ),
-                const Icon(Icons.shield_moon_rounded,size: 55.0,),
                 const Icon(Icons.people_alt_outlined,size: 55.0,),
+                const Icon(Icons.auto_graph,size: 55.0,),
                 //Icon(Icons.directions_bike,size: 55.0,),
               ],
             ),
