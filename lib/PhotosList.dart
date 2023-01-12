@@ -12,7 +12,7 @@ class Item{
       );
 }
 class Photos{
-  static int length = 4;
+  static int length = 5;
   static final items = [
   Item(
       id: 0,
@@ -28,12 +28,18 @@ class Photos{
       id: 2,
       task: 'Find people with whom you could do something you love to do!',
       image:
-      "images/work.jpg"),
+      "images/work.jpg"
+  ),
   Item(
-      id: 3,
-      task: 'You did good today, look forward to another productive day!',
-      image:
-      'images/raccoon-branch.jpg'),
+     id: 3,
+     task: 'Get a pet! If you already have one, take it for a walk, or spend some time with it!',
+     image: 'images/pet.jpg'
+  ),
+  Item(
+     id: 4,
+     task: 'You did good today, look forward to another productive day!',
+     image: 'images/raccoon-branch.jpg'
+  ),
   ];
 }
 

@@ -205,7 +205,7 @@ class QuizDialog extends StatelessWidget {
           ],
         ),
       ),
-      child: const Text("MoodCheck ©", style: TextStyle(fontSize: 18)),
+      child: const Text("MoodCheck©", style: TextStyle(fontSize: 18)),
     );
   }
 }

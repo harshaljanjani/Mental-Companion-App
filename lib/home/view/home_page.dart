@@ -3,7 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mental_companion/home/controller/home_controller.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:intl/intl.dart';
+import 'dart:io';
 
 class CapturePage extends StatefulWidget {
   const CapturePage({Key? key}) : super(key: key);
@@ -13,13 +15,14 @@ class CapturePage extends StatefulWidget {
 
 class _CapturePageState extends State<CapturePage> {
   final _homeController = HomeController();
+  String imageURL = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 76,
         backgroundColor: Colors.black,
-        title: const Text('Ready When You Are!', style: TextStyle(fontSize: 24, color: Colors.white)),
+        title: const Text('Ready When You Are!', style: TextStyle(fontSize: 24, color: Colors.white), textAlign: TextAlign.center,),
       ),
       floatingActionButton: SizedBox(
         width: 70,
@@ -30,15 +33,36 @@ class _CapturePageState extends State<CapturePage> {
             try {
               // Ensure that the camera is initialized.
               await _homeController.cameraController?.initialize();
+              // Attempt to take a picture and then get the location
+              // where the image file is saved.
               XFile? image = await _homeController.cameraController?.takePicture();
               if (kDebugMode) {
                 print('${image?.path}');
               }
-              // Attempt to take a picture and then get the location
-              // where the image file is saved.
-            } catch (e) {
+              if(image == null){
+                return;
+              }
+              String uniqueFileName = DateFormat.yMMMEd().format(DateTime.now());
+              Reference referenceRoot = FirebaseStorage.instance.ref();
+              Reference referenceDirImages = referenceRoot.child('images');
+              Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
+
+              //getDownloadURL-onSuccess
+              try{
+                await referenceImageToUpload.putFile(File(image.path));
+                imageURL = await referenceImageToUpload.getDownloadURL();
+              }
+              catch(e){
+                if (kDebugMode) {
+                  print(e);
+                }
+              }
+            }
+            catch (e) {
               // If an error occurs, log the error to the console.
-              print(e);
+              if (kDebugMode) {
+                print(e);
+              }
             }
           },
           backgroundColor: Colors.black,

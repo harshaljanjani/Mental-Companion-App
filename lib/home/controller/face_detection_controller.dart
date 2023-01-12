@@ -23,7 +23,6 @@ class FaceDetectorController {
     double? rightYears;
 
     for (Face face in faces!) {
-      final rect = face.boundingBox;
       if (face.smilingProbability != null) {
         smile = face.smilingProbability;
       }
