@@ -19,21 +19,21 @@ class FaceDetectorController {
   List<FaceModel>? extractFaceInfo(List<Face>? faces) {
     List<FaceModel>? response = [];
     double? smile;
-    double? leftYears;
-    double? rightYears;
+    double? leftEars;
+    double? rightEars;
 
     for (Face face in faces!) {
       if (face.smilingProbability != null) {
         smile = face.smilingProbability;
       }
 
-      leftYears = face.leftEyeOpenProbability;
-      rightYears = face.rightEyeOpenProbability;
+      leftEars = face.leftEyeOpenProbability;
+      rightEars = face.rightEyeOpenProbability;
 
       final faceModel = FaceModel(
         smile: smile,
-        leftYearsOpen: leftYears,
-        rightYearsOpen: rightYears,
+        leftEarsOpen: leftEars,
+        rightEarsOpen: rightEars,
       );
 
       response.add(faceModel);

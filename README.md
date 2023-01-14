@@ -28,12 +28,12 @@ The application intends to provide an aid in solving the **mass network of menta
   - **Time-series graphs**, a data-visualization technique to show the overall line graph of the mood displayed by the user on an average, each day since the user began   utilizing the application.
 
 ## <ins>Tech</ins> <ins>Stack</ins>
-- **Application Development:** Dart/Flutter
-- **User Authentication Services:** Google Firebase
-- **Computer Vision:** OpenCV
-- **Cloud Storage:** Google Firestore Storage
-- **Artificial Neural Network (ANN):** Tensorflow (TFLite) and Keras
-- **Data Collection:** NumPy
+- **<ins>Application</ins> <ins>Development</ins>:** Dart/Flutter
+- **<ins>User</ins> <ins>Authentication</ins> <ins>Services</ins>:** Google Firebase
+- **<ins>Computer</ins> <ins>Vision</ins>:** OpenCV
+- **<ins>Cloud</ins> <ins>Storage</ins>:** Google Firestore Storage
+- **<ins>Artificial</ins> <ins>Neural</ins> <ins>Network</ins> (<ins>ANN</ins>):** Tensorflow (TFLite) and Keras
+- **<ins>Data</ins> <ins>Collection</ins>:** NumPy
 
 ## <ins>Screenshots</ins> (<ins>Emulated-Display</ins> <ins>For</ins> <ins>Emotion-Recognition</ins> <ins>ANN</ins>):
 
