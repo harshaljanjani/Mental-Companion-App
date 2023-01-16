@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mental_companion/screens/profile_page.dart';
 import 'package:mental_companion/screens/register_page.dart';
-
 import '../utils/fire_auth.dart';
 import '../utils/validator.dart';
 
@@ -54,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           backgroundColor: Colors.black,
           toolbarHeight: 60,
-          title: const Text('Firebase Authentication', style: TextStyle(fontSize: 24, color: Colors.white)),
+          title: const Text('Welcome To Reflective.', style: TextStyle(fontSize: 24, color: Colors.white)),
         ),
         body: FutureBuilder(
           future: _initializeFirebase(),

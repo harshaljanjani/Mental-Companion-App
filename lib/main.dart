@@ -2,8 +2,8 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mental_companion/screens/login_page.dart';
-import 'PhotosList.dart';
-import 'app_widget.dart';
+import 'screens/photos_list.dart';
+import 'screens/app_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -167,7 +167,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Authentication',
+      title: 'Reflective.',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.cyan,
