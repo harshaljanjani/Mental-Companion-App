@@ -210,58 +210,6 @@ class QuizDialog extends StatelessWidget {
   }
 }
 
-class MoodCheck extends StatelessWidget {
-  const MoodCheck({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body:
-        Container(
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(colors: [Color(0xFFffdc00), Colors.deepOrange]),
-          ),
-          child: ListView(
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(15,0,15,0),
-                  child: Text('\nEmotionCapture\n',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 40, color: Colors.black, fontWeight: FontWeight.bold)
-                )
-                ),
-                //SliderExample(),
-                // const Padding(
-                //   padding: EdgeInsets.fromLTRB(4,20,0,0),
-                //   child: SliderExample(),
-                // ),
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(25,150,25,0),
-                    child: OutlinedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                      ),
-                      onPressed: () {Navigator.pop(context);},
-                      child: const Text('NEXT', style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold)),
-                    )
-                )
-              ]
-          ),
-      ),
-    );
-  }
-}
-
-
-
-
-
-
-
-
-
-
 
 
 
