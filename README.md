@@ -1,5 +1,5 @@
 # Reflective.
-
+![image](https://github.com/harshaljanjani/Reflective./assets/75426551/6a946f2c-7a4a-40c8-8f2c-36103aaaca0b)
 ## <ins>About</ins> <ins>The</ins> <ins>Project</ins>
 
 The application intends to provide an aid in solving the **mass network of mental health issues faced by people living in India**, the target group of the project being **youngsters** and **adolescents** (high-school students and university students). The app notifies you to take a single **'<ins>candid</ins>'** snapshot of yourself once a day, at random times each day. The data collected overtime is stored in a database, and used for analytics:
